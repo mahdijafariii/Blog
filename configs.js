@@ -10,5 +10,7 @@ module.exports = {
         refreshTokenExpire : process.env.REFRESH_TOKEN_EXPIRE_IN_SECOND,
         accessSecretKey : process.env.ACCESS_TOKEN_SECRET_KEY,
         refreshSecretKey : process.env.REFRESH_TOKEN_SECRET_KEY,
-    }
+    },
+
+    port : 4000
 }
