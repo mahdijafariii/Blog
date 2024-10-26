@@ -1,21 +1,12 @@
-const mysql = require('mysql2');
-const config = require('/configs')
-const connection = mysql.createConnection({
-    host: config.db.host,
-    user: config.db.user,
-    port: config.db.port,
-    database: config.db.db_name,
-    password: config.db.password
+const mysql = require("mysql2/promise");
+const configs = require("../Blog/configs");
+
+// CreatePool
+
+const connection = mysql.createPool({
+    uri: configs.db.uri,
+    connectionLimit: configs.db.poolSize,
+    waitForConnections: true,
 });
-
-connection.connect(err => {
-    if(err){
-        throw err;
-    }
-    else {
-        console.log('Database connected successfully')
-    }
-})
-
 
 module.exports = connection;
