@@ -4,6 +4,7 @@ const User = require('../repositories/users')
 const bcrypt = require('bcrypt')
 const config = require('../configs')
 const jwt = require('jsonwebtoken')
+const svgCaptcha = require('svg-captcha')
 const {json} = require("express");
 const register = async (req, res, next) => {
     const {username, name, password, email} = req.body;
@@ -86,6 +87,13 @@ const me = async (req, res, next) => {
 const logout = async (req, res, next) => {
 
 
+}
+
+const getCaptcha = async (req,res) =>{
+    const captcha = svgCaptcha.create({size : 4});
+    return res.status(200).json({
+        captcha : captcha.data
+    })
 }
 
 module.exports = {register, logout , login , refresh , me}

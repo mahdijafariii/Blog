@@ -17,7 +17,7 @@ const getAllTags = async (req,res)=>{
 
 const getArticleTags = async (req,res)=>{
     const slug = req.params.slug;
-    const tag =await Tags.findByTitle({slug});
+    const tag =await Tags.findByTitle({title:slug});
     if(!tag){
         return res.status(404).json({
             message : "Tag not founded !!"
@@ -52,4 +52,4 @@ const deleteTag = async (req,res)=>{
     })
 }
 
-module.exports = {deleteTag , addTag , getAllTags, getTagWithTitle}
+module.exports = {deleteTag , addTag , getAllTags, getTagWithTitle,getArticleTags}

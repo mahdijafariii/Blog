@@ -3,7 +3,7 @@ const controller = require('../controllers/article')
 const router = express.Router();
 const multer = require('multer');
 const path = require('path')
-const isAdminMiddleware = require('../middlewares/isAdminMiddleware')
+const isAdminMiddleware = require('../middlewares/isAuthMiddleware')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
