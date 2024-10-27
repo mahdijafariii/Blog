@@ -1,9 +1,9 @@
 const db = require("../db")
 
-const create =async ({title,content , slug , author_id}) =>{
-    const insertQuery = 'INSERT INTO articles VALUES (NULL ,?,?,?,?)'
+const create =async ({title,content , slug , author_id, cover}) =>{
+    const insertQuery = 'INSERT INTO articles (id , title , content ,slug , author_id , cover ) VALUES (NULL ,?,?,?,?,?)'
     const [insertedArticle] = await db.execute(insertQuery,[title,content,slug,author_id]);
-    const mainArticle = await db.execute('SELECT * FROM artilces WHERE id = ?' , [insertedArticle.insertId]);
+    const mainArticle = await db.execute('SELECT * FROM articles WHERE id = ?' , [insertedArticle.insertId]);
     return mainArticle;
 }
 

@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const authRoutes = require('../Blog/routes/auth')
 const articleRoutes = require('../Blog/routes/articles')
 const tagsRoutes = require('../Blog/routes/tags')
-const cookieParser = require('cookie-parser');
+
 
 const app = express();
 

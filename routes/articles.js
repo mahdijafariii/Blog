@@ -3,6 +3,7 @@ const controller = require('../controllers/article')
 const router = express.Router();
 const multer = require('multer');
 const path = require('path')
+const isAdminMiddleware = require('../middlewares/isAdminMiddleware')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -34,7 +35,7 @@ const uploader = multer({
 });
 
 router.route('/').get(controller.getAll);
-router.route('/').post(controller.create);
+router.route('/').post(isAdminMiddleware,uploader.single('cover'),controller.create);
 router.route('/:slug').get(controller.getBySlug);
 router.route('/remove/:id').post(controller.remove);
 

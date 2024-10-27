@@ -25,5 +25,14 @@ const remove = async ({id})=>{
     return tag[0];
 }
 
+const findArticleWithTag = async ({id}) =>{
+    const query = 'SELECT a.*' +
+        'FROM articles a' +
+        'JOIN articles_tags at ON a.id = at.article_id' +
+        'WHERE at.tag_id = ?'
+    const articles = await db.execute(query,[id]);
+    return articles[0];
+}
+
 
 module.exports = {create , findByTitle ,findAll , remove}
