@@ -10,13 +10,13 @@ const create = async ({name , username , email , password}) =>{
 const findByUsername = async (username)=>{
     const query = 'SELECT * FROM users WHERE username = ?'
     const user = await db.execute(query,[username]);
-    return user[0];
+    return user[0][0];
 }
 
 const findById = async (id)=>{
     const query = 'SELECT * FROM users WHERE id = ?'
     const user = await db.execute(query,[id]);
-    return user[0];
+    return user[0][0];
 }
 
-module.exports = {create}
+module.exports = {create , findById , findByUsername}
