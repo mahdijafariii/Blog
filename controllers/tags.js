@@ -15,6 +15,21 @@ const getAllTags = async (req,res)=>{
     })
 }
 
+const getArticleTags = async (req,res)=>{
+    const slug = req.params.slug;
+    const tag =await Tags.findByTitle({slug});
+    if(!tag){
+        return res.status(404).json({
+            message : "Tag not founded !!"
+        })
+    }
+    const articles = await Tags.findArticleWithTag({id : tag.id})
+    return res.status(200).json({
+        articles
+    })
+}
+
+
 const getTagWithTitle = async (req,res)=>{
     const {title} = req.params;
     const tag = await Tags.findByTitle({title});
