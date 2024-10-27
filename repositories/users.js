@@ -7,13 +7,13 @@ const create = async ({name , username , email , password}) =>{
     const user = await db.execute(selectMainUser,[insertedUser.insertId]);
     return user[0][0];
 }
-const findByUsername = async (username)=>{
+const findByUsername = async ({username})=>{
     const query = 'SELECT * FROM users WHERE username = ?'
     const user = await db.execute(query,[username]);
     return user[0][0];
 }
 
-const findById = async (id)=>{
+const findById = async ({id})=>{
     const query = 'SELECT * FROM users WHERE id = ?'
     const user = await db.execute(query,[id]);
     return user[0][0];

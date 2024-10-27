@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
     await validateLogin.validate({username,password},{
         abortEarly : false
     });
-    const user =await User.findByUsername(username);
+    const user =await User.findByUsername({username});
     if(!user){
         return res.status(404).json({
             message: "Invalid username or password !!"})
