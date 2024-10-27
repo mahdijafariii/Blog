@@ -1,7 +1,7 @@
 const validateRegister = require('../validators/registerValidator')
 const User = require('../repositories/users')
 const bcrypt = require('bcrypt')
-const config = require('configs')
+const config = require('../configs')
 const jwt = require('jsonwebtoken')
 const register = async (req, res, next) => {
     const {username, name, password, email} = req.body;
@@ -11,7 +11,7 @@ const register = async (req, res, next) => {
 
     const hashPassword = await bcrypt.hash(password,12);
 
-    const user = User.create({name,username,email,hashPassword})
+    const user = await User.create({name,username,email,password:hashPassword})
 
     const accessToken = await jwt.sign({id : user.id , role : user.role},config.auth.accessSecretKey, {
         expiresIn: config.auth.accessTokenExpire + "s",
@@ -45,3 +45,4 @@ const logout = async (req, res, next) => {
 
 }
 
+module.exports = {register, logout , login , refresh , me}

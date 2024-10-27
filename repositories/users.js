@@ -1,10 +1,8 @@
-const db = require('db')
+const db = require('../db')
 
 const create = async ({name , username , email , password}) =>{
     const query = 'INSERT INTO users (name,username,email,password) VALUES (?,?,?,?)';
-
     const [insertedUser] = await db.execute(query,[name,username,email,password]);
-
     const selectMainUser = 'SELECT * FROM users WHERE id = ?';
     const user = await db.execute(selectMainUser,[insertedUser.insertId]);
     return user[0][0];
