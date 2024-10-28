@@ -1,7 +1,6 @@
 const Article = require('../repositories/articles')
 const getAll = async (req,res,next)=>{
-
-
+    // not implemented yet !!!
 }
 const create = async (req,res,next)=>{
     const {content, slug , title, tags} = req.body;
@@ -13,15 +12,8 @@ const create = async (req,res,next)=>{
         message : "Article created successfully !!"
     });
 }
-const getBySlug = async (req,res,next)=>{
-
-
-}
-const remove = async (req,res,next)=>{
-
-
-}
 
 
 
-module.exports = {create , getBySlug,getAll,remove}
+
+module.exports = {create ,getAll}

@@ -36,7 +36,6 @@ const uploader = multer({
 
 router.route('/').get(controller.getAll);
 router.route('/').post(isAdminMiddleware,uploader.single('cover'),controller.create);
-router.route('/:slug').get(controller.getBySlug);
-router.route('/remove/:id').post(controller.remove);
+
 
 module.exports = router;
